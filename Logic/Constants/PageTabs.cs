@@ -3,13 +3,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace JaxonFoundation.Logic.Constants
 {
+    [GroupDefinitions]
     public class PageTabs
     {
         [Display(Name = "Page Content", Order = 100)]
         [RequiredAccess(AccessLevel.Edit)]
         public const string PageContent = "Page Content";
 
-        [Display(Order = 110)]
+        [Display(Order = 100)]
         [RequiredAccess(AccessLevel.Edit)]
         public const string Navigation = "Navigation";
 
