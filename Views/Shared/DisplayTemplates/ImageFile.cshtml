@@ -1,0 +1,20 @@
+﻿@model JaxonFoundation.Logic.Models.Media.ImageFile
+
+@using EPiServer.Web.Mvc.Html
+@{
+	if (Model == null)
+	{
+		return;
+	}
+
+	// Add CSS classes to the img-tag by adding a string with the name CssClass.
+	var cssClass = ViewData["CssClass"] ?? string.Empty;
+
+	// Add other attributes to the img-tag by adding a <string,string> dictionary with the name Attributes.
+	// Key/Value pairs in the dictionary match up to key/value pairs on the img-tag.
+	Dictionary<string, string> attributes = (Dictionary<string, string>?)ViewData["Attributes"] ?? new Dictionary<string, string>();
+	string? attributeString = string.Join(" ", attributes.Select(kv => kv.Key + "=" + kv.Value));
+
+}
+
+<img class="@cssClass" src="@Url.ContentUrl(Model.ContentLink)" alt="@Model.Description" @attributeString>
