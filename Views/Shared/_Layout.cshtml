@@ -1,4 +1,4 @@
-﻿@model PageViewModel<BasePage>
+﻿@* @model PageViewModel<BasePage>
 @using System.Threading
 @using JaxonFoundation.Logic.ViewModels
 @using JaxonFoundation.Logic.Models.Pages.Base
@@ -12,3 +12,4 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     @(await Component.InvokeAsync<MetaDataComponent>(Model))
     @Html.RequiredClientResources("Header")
+ *@
