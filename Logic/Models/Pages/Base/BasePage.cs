@@ -5,7 +5,7 @@ using Castle.Core.Internal;
 
 namespace JaxonFoundation.Logic.Models.Pages.Base
 {
-    public class BasePage: PageData
+    public partial class BasePage: PageData
     {
         #region Content
         [CultureSpecific]

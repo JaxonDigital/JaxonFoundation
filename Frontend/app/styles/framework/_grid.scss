@@ -1,0 +1,24 @@
+/*
+ * Bootstrap Grid v4.4.1 (https://getbootstrap.com/)
+ * Copyright 2011-2019 The Bootstrap Authors
+ * Copyright 2011-2019 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+// Modified by Vertic. Removed unused code.
+
+@import '~styles/framework/media-queries';
+@import '~bootstrap/mixins/grid';
+
+@mixin make-col-bp($size, $bp: xl) {
+	$columns: map-get($grid-columns-bp, $bp);
+	$gutter: map-get($grid-gutter-widths, $bp);
+
+	@include make-col-ready($gutter);
+	@include make-col($size: $size, $columns: $columns);
+}
+
+@mixin make-col-offset-bp($size, $bp: xl) {
+	$columns: map-get($grid-columns-bp, $bp);
+
+	@include make-col-offset($size: $size, $columns: $columns);
+}

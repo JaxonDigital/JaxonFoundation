@@ -1,0 +1,118 @@
+@use '~styles/vars/easing' as Easing;
+
+/**
+ * no-appearance
+ * Removing browser appearance stylings from elements
+ */
+@mixin no-appearance {
+	padding: 0;
+
+	background: transparent;
+	border: 0;
+	border-radius: 0;
+	outline: 0;
+
+	appearance: none;
+}
+
+/**
+ * Remove the unit of a length
+ *
+ * @param {Number} $number - Number to remove unit from
+ * @return {Number} - Unitless number
+ */
+@function strip-unit($number) {
+	@if type-of($number) == 'number' and not unitless($number) {
+		@return $number / ($number * 0 + 1);
+	}
+
+	@return $number;
+}
+
+/**
+ * Adjust a percentage for improved size calculation in the browser.
+ * Chrome for example doesn't always calculate 33.3333% correct,
+ * where a 33.3334% is needed instead.
+ *
+ * @param {Number} $percentage - Percentage value to adjust
+ * @return {Number} - Adjusted percentage value
+ */
+@function adjust-percentage($percentage) {
+	$value: strip-unit($percentage);
+	$value-str: '#{$value}';
+	$dot-index: str-index($string: $value-str, $substring: '.');
+
+	@if $dot-index == null {
+		@return $value * 1%;
+	}
+
+	$decimals: str-slice($string: $value-str, $start-at: $dot-index + 1);
+	$decimals-length: str-length($decimals);
+	$decimal-str: str-slice($string: $decimals, $start-at: 1, $end-at: 1);
+	$test-string: '';
+	$n: 1;
+
+	@for $i from 1 through $decimals-length {
+		$test-string: $test-string + $decimal-str;
+		$n: $n * 10;
+	}
+
+	@if ($decimals != $test-string) {
+		@return $value * 1%;
+	}
+
+	$value: ceil($value * $n) / $n;
+
+	@return $value * 1%;
+}
+
+@mixin link-hover($color, $background-color) {
+	position: relative;
+
+	color: $color;
+	text-decoration: none;
+
+	&::after {
+
+		position: absolute;
+		bottom: -4px;
+		left: 0;
+
+		display: block;
+		width: 100%;
+		height: 2px;
+
+		background-color: $background-color;
+		transform: scale(0);
+		transform-origin: left center;
+
+		transition: all 0.2s Easing.$easing-ease-out-quad;
+
+		content: '';
+	}
+
+	&:hover {
+		&::after {
+			transform: scale(1);
+		}
+	}
+}
+
+@mixin webkit-custom-scrollbar($scrollerWidth, $scrollerHeight, $borderRadius, $thumbColor, $trackColor, $shadow) {
+	-webkit-overflow-scrolling: touch;
+	&::-webkit-scrollbar {
+		width: $scrollerWidth + px;
+		height: $scrollerHeight + px;
+	} //thumbl
+	&::-webkit-scrollbar-thumb {
+		-webkit-border-radius: $borderRadius + px;
+		border-radius: $borderRadius + px;
+		background-color: $thumbColor;
+	} //track
+	&::-webkit-scrollbar-track {
+		-webkit-box-shadow: $shadow; //inset 0 0 2px rgba(0,0,0,0.3)
+		-webkit-border-radius: 10px;
+		border-radius: $borderRadius + px;
+		background-color: $trackColor;
+	}
+}

@@ -1,7 +1,9 @@
-﻿@* @model PageViewModel<BasePage>
+﻿@model PageViewModel<BasePage>
 @using System.Threading
 @using JaxonFoundation.Logic.ViewModels
 @using JaxonFoundation.Logic.Models.Pages.Base
+
+
 
 <!DOCTYPE html>
 <html lang="@Model.LanguageCode" style="background:white">
@@ -10,6 +12,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=yes" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    @(await Component.InvokeAsync<MetaDataComponent>(Model))
-    @Html.RequiredClientResources("Header")
- *@
+</head>
+
+<!body>
+
+<main id="main">
+        @RenderBody()
+</main>
+</!body>
+</html>

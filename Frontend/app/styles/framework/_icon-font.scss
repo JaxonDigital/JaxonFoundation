@@ -1,0 +1,75 @@
+/* stylelint-disable font-family-no-missing-generic-family-keyword */
+
+$icon-fonts: (
+	arrow-down: '\ea01',
+	arrow-left: '\ea02',
+	arrow-right: '\ea03',
+	arrow-up: '\ea04',
+	check: '\ea05',
+	checkbox: '\ea06',
+	chevron-down: '\ea07',
+	chevron-left: '\ea08',
+	chevron-right: '\ea09',
+	chevron-up: '\ea0a',
+	download: '\ea0b',
+	email: '\ea0c',
+	external-link: '\ea0d',
+	facebook: '\ea0e',
+	hamburger: '\ea0f',
+	instagram: '\ea10',
+	linkedin: '\ea11',
+	lock: '\ea12',
+	minus: '\ea13',
+	pause: '\ea14',
+	phone: '\ea15',
+	play: '\ea16',
+	plus: '\ea17',
+	search: '\ea18',
+	sound: '\ea19',
+	twitter: '\ea1a',
+	x: '\ea1b',
+	youtube: '\ea1c',
+);
+
+@mixin icon-font($name: null, $in-pseudo: true) {
+	@if ($in-pseudo) {
+		&::before {
+			display: inline-block;
+
+			font: normal normal 400 14px/1 icon-font;
+			font-size: inherit;
+			vertical-align: middle;
+
+			transform: translate(0, 0);
+			text-rendering: auto;
+			-moz-osx-font-smoothing: grayscale;
+			-webkit-font-smoothing: antialiased;
+		}
+	} @else {
+		display: inline-block;
+
+		text-rendering: auto;
+
+		font: normal normal 400 14px/1 icon-font;
+		font-size: inherit;
+		vertical-align: middle;
+		-moz-osx-font-smoothing: grayscale;
+		-webkit-font-smoothing: antialiased;
+
+		transform: translate(0, 0);
+	}
+
+	@if ($name) {
+		@include icon-font-change($name: $name, $in-pseudo: $in-pseudo);
+	}
+}
+
+@mixin icon-font-change($name: null, $in-pseudo: true) {
+	@if ($name and $in-pseudo) {
+		&::before {
+			content: map-get($icon-fonts, $name);
+		}
+	} @else if ($name) {
+		content: map-get($icon-fonts, $name);
+	}
+}
