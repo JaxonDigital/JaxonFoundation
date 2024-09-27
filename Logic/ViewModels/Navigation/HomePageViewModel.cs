@@ -4,13 +4,8 @@ using JaxonFoundation.Logic.Models.Pages.Base;
 
 namespace JaxonFoundation.Logic.ViewModels.Navigation
 {
-    public class HomePageViewModel : PageViewModel<BasePage>
+    public class HomePageViewModel 
     {
-        public HomePageViewModel(BasePage currentPage) : base(currentPage)
-        {
-        }
-
-
         public string? GoogleAnanlyticsId
         {
             get;
@@ -18,6 +13,12 @@ namespace JaxonFoundation.Logic.ViewModels.Navigation
         }
         
         public string? Title
+        {
+            get;
+            set;
+        }
+
+        public string? LanguageCode
         {
             get;
             set;
