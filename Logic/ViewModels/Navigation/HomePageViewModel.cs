@@ -1,21 +1,26 @@
-﻿namespace JaxonFoundation.Logic.ViewModels.Navigation
+﻿using JaxonFoundation.Logic.Models.Pages;
+using EPiServer.ServiceLocation;
+using JaxonFoundation.Logic.Models.Pages.Base;
+
+namespace JaxonFoundation.Logic.ViewModels.Navigation
 {
-    public class HomePageViewModel
+    public class HomePageViewModel : PageViewModel<BasePage>
     {
-        public ContentArea? Header
+        public HomePageViewModel(BasePage currentPage) : base(currentPage)
+        {
+        }
+
+
+        public string? GoogleAnanlyticsId
         {
             get;
             set;
         }
-
-        public ContentArea? Footer
+        
+        public string? Title
         {
             get;
             set;
         }
-
-        public bool HasHeaderContent => Header != null && Header.FilteredItems.Any();
-
-        public bool HasFooterContent => Footer != null && Footer.FilteredItems.Any();
     }
 }

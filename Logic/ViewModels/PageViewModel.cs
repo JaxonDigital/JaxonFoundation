@@ -1,6 +1,6 @@
-﻿using JaxonFoundation.Logic.Models.Media;
-using JaxonFoundation.Logic.Models.Pages.Base;
+﻿using JaxonFoundation.Logic.Models.Pages.Base;
 using EPiServer.ServiceLocation;
+using JaxonFoundation.Logic.Models.Pages;
 
 namespace JaxonFoundation.Logic.ViewModels
 {
@@ -10,29 +10,12 @@ namespace JaxonFoundation.Logic.ViewModels
         {
             var loader = ServiceLocator.Current.GetInstance<IContentLoader>();
 
-            Name = currentPage.Name;
-            ContentArea? Hero = currentPage.Hero;
-            ContentArea? MainContent = currentPage.MainContent;
-            HasHero = currentPage.HasHero;
-            HasMainContent = currentPage.HasMainContent;
-
             string? PageTitle = currentPage.PageTitle;
             string? MetaDescription = currentPage.MetaDescription;
-            
         }
 
-        public string Name { get; private set; }
-
-        public string LanguageCode { get; private set; }
-
-        public ContentArea? Hero { get; private set; }
-
-        public ContentArea? MainContent { get; private set; }
-
-        public bool HasHero { get; private set; }
-
-        public bool HasMainContent { get; private set; }
-
+        public string? Name { get; private set; }
+        public string? LanguageCode { get; private set; }
         public string? PageTitle
         {
             get;
@@ -57,7 +40,7 @@ namespace JaxonFoundation.Logic.ViewModels
             set;
         }
 
-        public string MetaTags
+        public string? MetaTags
         {
             get;
             set;

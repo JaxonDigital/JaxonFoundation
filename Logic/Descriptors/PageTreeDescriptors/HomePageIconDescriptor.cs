@@ -5,7 +5,7 @@ using JaxonFoundation.Logic.Interfaces.Descriptors;
 namespace JaxonFoundation.Logic.Descriptors.PageTreeDescriptors
 {
 	[UIDescriptorRegistration]
-	public class HomePageIconDescriptor : UIDescriptor<IHomePageIconDescriptor>
+	public class HomePageIconDescriptor : UIDescriptor<IHomePageIcon>
     {
         /// <summary>
 		/// Sets an icon for the home page.
