@@ -15,6 +15,9 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="EPiServer.CMS" Version="12.31.2" />
+    <PackageReference Include="EPiServer.ImageLibrary.ImageSharp" Version="2.0.4" />
+    <PackageReference Include="Geta.Optimizely.ContentTypeIcons" Version="2.1.0" />
+    <PackageReference Include="System.Runtime.Caching" Version="8.0.0" />
   </ItemGroup>
   
   <ItemGroup>
@@ -22,6 +25,6 @@
   </ItemGroup>
   
   <ItemGroup>
-    <Folder Include="Frontend\" />
+    <Folder Include="Views\Pages\" />
   </ItemGroup>
 </Project>

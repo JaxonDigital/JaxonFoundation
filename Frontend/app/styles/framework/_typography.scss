@@ -1,0 +1,489 @@
+/**
+ * Standard typographical styles
+ *
+ * @author Rasmus Kalms <rkalms@vertic.com>
+ */
+
+@import "~styles/vars/fonts";
+@import "~styles/vars/colors";
+@import "~styles/framework/media-queries";
+@import "~styles/framework/multiline-ellipsis";
+
+@mixin text-multiline-ellipsis(
+	$font-size,
+	$line-height,
+	$lines: false,
+	$adjust: false,
+	$fixed-height: false
+) {
+	@if ($lines and $adjust) {
+		@include multiline-ellipsis-adjust(
+			$lines: $lines,
+			$line-height: $font-size * $line-height,
+			$fixed-height: $fixed-height
+		);
+	} @else if ($lines) {
+		@include multiline-ellipsis(
+			$lines: $lines,
+			$line-height: $font-size * $line-height,
+			$fixed-height: $fixed-height
+		);
+	}
+}
+
+@mixin prose($color: $oxy-black) {
+	color: $color;
+
+	h1 {
+		@include font-header();
+		color: $color;
+	}
+
+	h2 {
+		@include font-subheader();
+
+		margin-top: 0;
+		margin-bottom: 16px;
+
+		color: $color;
+	}
+
+	h3 {
+		@include font-title();
+
+		margin-top: 48px;
+		margin-bottom: 12px;
+
+		color: $color;
+
+		@include media-breakpoint-up(md) {
+			margin-bottom: 24px;
+		}
+	}
+
+	li,
+	p {
+		@include font-body-2();
+		color: $color;
+	}
+
+	p {
+		margin-bottom: 24px;
+	}
+
+	ul,
+	ol {
+		padding-left: 16px;
+	}
+
+	li {
+		margin-bottom: 16px;
+		padding-left: 3px;
+	}
+
+	table {
+		position: relative;
+
+		min-width: 100%;
+
+		color: $oxy-black;
+
+		border-collapse: collapse;
+	}
+
+	tbody {
+		th {
+			color: $brand-primary;
+			font-weight: $font-weight-bold;
+		}
+	}
+
+	th,
+	td {
+		@include desktop-accordion-items();
+
+		padding: 8px 0 8px 24px;
+
+		text-align: right;
+
+		border-bottom: solid 1px $oxy-slate;
+
+		@include media-breakpoint-up(lg) {
+			padding: 16px 0 16px 24px;
+		}
+
+		@include media-breakpoint-up(lg) {
+			padding: 16px 24px;
+
+			text-align: center;
+		}
+
+		&:first-child {
+			text-align: left;
+		}
+	}
+
+	.table-wrapper {
+		position: relative;
+
+		&__scroller {
+			overflow: hidden;
+			overflow-x: auto;
+			-webkit-overflow-scrolling: touch;
+
+			&::-webkit-scrollbar {
+				height: 8px;
+			}
+
+			&::-webkit-scrollbar-thumb {
+				background: $oxy-white;
+				border: 0 solid $brand-primary;
+				border-top-width: 6px;
+			}
+		}
+
+		&__responsive-head {
+			display: inline;
+			padding-right: 8px;
+
+			@include media-breakpoint-up(md) {
+				display: none;
+			}
+		}
+	}
+}
+
+@mixin h2-special-desktop {
+	font-weight: $font-weight-bold;
+	font-size: 32px;
+	line-height: 40px;
+}
+
+@mixin h2-special-mobile {
+	font-weight: $font-weight-bold;
+	font-size: 30px;
+	line-height: 36px;
+}
+
+@mixin desktop-header {
+	font-weight: $font-weight-bold;
+	font-size: 56px;
+	line-height: 60px;
+}
+
+@mixin tablet-header {
+	font-weight: $font-weight-bold;
+	font-size: 40px;
+	line-height: 48px;
+}
+
+@mixin mobile-header {
+	font-weight: $font-weight-bold;
+	font-size: 40px;
+	line-height: 48px;
+}
+
+@mixin desktop-subheader {
+	font-weight: $font-weight-bold;
+	font-size: 24px;
+	line-height: 30px;
+}
+
+@mixin tablet-subheader {
+	font-weight: $font-weight-bold;
+	font-size: 24px;
+	line-height: 30px;
+}
+
+@mixin mobile-subheader {
+	font-weight: $font-weight-bold;
+	font-size: 24px;
+	line-height: 30px;
+}
+
+@mixin desktop-title {
+	font-weight: $font-weight-bold;
+	font-size: 20px;
+	line-height: 26px;
+}
+
+@mixin tablet-title {
+	font-weight: $font-weight-bold;
+	font-size: 20px;
+	line-height: 26px;
+}
+
+@mixin mobile-title {
+	font-weight: $font-weight-bold;
+	font-size: 20px;
+	line-height: 26px;
+}
+
+@mixin desktop-section-title {
+	font-weight: $font-weight-bold;
+	font-size: 16px;
+	line-height: 24px;
+}
+
+@mixin tablet-section-title {
+	font-weight: $font-weight-bold;
+	font-size: 16px;
+	line-height: 24px;
+}
+
+@mixin mobile-section-title {
+	font-weight: $font-weight-bold;
+	font-size: 16px;
+	line-height: 24px;
+}
+
+@mixin desktop-content-tag {
+	font-weight: $font-weight-medium;
+	font-size: 16px;
+	line-height: 24px;
+}
+
+@mixin tablet-content-tag {
+	font-weight: $font-weight-medium;
+	font-size: 16px;
+	line-height: 24px;
+}
+
+@mixin mobile-content-tag {
+	font-weight: $font-weight-medium;
+	font-size: 16px;
+	line-height: 24px;
+}
+
+@mixin desktop-body-1 {
+	font-weight: $font-weight-medium;
+	font-size: 18px;
+	line-height: 26px;
+}
+
+@mixin tablet-body-1 {
+	font-weight: $font-weight-medium;
+	font-size: 18px;
+	line-height: 26px;
+}
+
+@mixin mobile-body-1 {
+	font-weight: $font-weight-medium;
+	font-size: 18px;
+	line-height: 26px;
+}
+
+@mixin desktop-body-2 {
+	font-weight: $font-weight-medium;
+	font-size: 18px;
+	line-height: 26px;
+}
+
+@mixin tablet-body-2 {
+	font-weight: $font-weight-medium;
+	font-size: 18px;
+	line-height: 26px;
+}
+
+@mixin mobile-body-2 {
+	font-weight: $font-weight-medium;
+	font-size: 18px;
+	line-height: 26px;
+}
+
+@mixin desktop-accordion-items {
+	font-weight: $font-weight-bold;
+	font-size: 18px;
+	line-height: 26px;
+}
+
+@mixin tablet-accordion-items {
+	font-weight: $font-weight-bold;
+	font-size: 18px;
+	line-height: 26px;
+}
+
+@mixin mobile-accordion-items {
+	font-weight: $font-weight-bold;
+	font-size: 18px;
+	line-height: 26px;
+}
+
+@mixin desktop-menu-nav-items {
+	font-weight: $font-weight-medium;
+	font-size: 18px;
+	line-height: 26px;
+}
+
+@mixin tablet-menu-nav-items {
+	font-weight: $font-weight-medium;
+	font-size: 18px;
+	line-height: 26px;
+}
+
+@mixin mobile-menu-nav-items {
+	font-weight: $font-weight-medium;
+	font-size: 18px;
+	line-height: 26px;
+}
+
+@mixin desktop-secondary-menu-items {
+	font-weight: $font-weight-medium;
+	font-size: 18px;
+	line-height: 26px;
+}
+
+@mixin tablet-secondary-menu-items {
+	font-weight: $font-weight-medium;
+	font-size: 18px;
+	line-height: 26px;
+}
+
+@mixin mobile-secondary-menu-items {
+	font-weight: $font-weight-medium;
+	font-size: 18px;
+	line-height: 26px;
+}
+
+@mixin desktop-subtitle {
+	font-weight: $font-weight-bold;
+	font-size: 16px;
+	line-height: 24px;
+}
+
+@mixin tablet-subtitle {
+	font-weight: $font-weight-bold;
+	font-size: 16px;
+	line-height: 24px;
+}
+
+// Composite font definitions
+@mixin font-header() {
+	@include mobile-header();
+
+	@include media-breakpoint-up(md) {
+		@include tablet-header();
+	}
+
+	@include media-breakpoint-up(lg) {
+		@include desktop-header();
+	}
+}
+
+@mixin font-subheader() {
+	@include mobile-subheader();
+
+	@include media-breakpoint-up(md) {
+		@include tablet-subheader();
+	}
+
+	@include media-breakpoint-up(lg) {
+		@include desktop-subheader();
+	}
+}
+
+@mixin font-title() {
+	@include mobile-title();
+
+	@include media-breakpoint-up(md) {
+		@include tablet-title();
+	}
+
+	@include media-breakpoint-up(lg) {
+		@include desktop-title();
+	}
+}
+
+@mixin font-section-title($color: $brand-primary) {
+	@include mobile-section-title();
+	color: $color;
+
+	@include media-breakpoint-up(md) {
+		@include tablet-section-title();
+	}
+
+	@include media-breakpoint-up(lg) {
+		@include desktop-section-title();
+	}
+}
+
+@mixin font-content-tag($color: $brand-primary) {
+	@include mobile-content-tag();
+	color: $color;
+
+	@include media-breakpoint-up(md) {
+		@include tablet-content-tag();
+	}
+
+	@include media-breakpoint-up(lg) {
+		@include desktop-content-tag();
+	}
+}
+
+@mixin font-body-1() {
+	@include mobile-body-1();
+
+	@include media-breakpoint-up(md) {
+		@include tablet-body-1();
+	}
+
+	@include media-breakpoint-up(lg) {
+		@include desktop-body-1();
+	}
+}
+
+@mixin font-body-2() {
+	@include mobile-body-2();
+
+	@include media-breakpoint-up(md) {
+		@include tablet-body-2();
+	}
+
+	@include media-breakpoint-up(lg) {
+		@include desktop-body-2();
+	}
+}
+
+@mixin font-accordion-items() {
+	@include mobile-accordion-items();
+
+	@include media-breakpoint-up(md) {
+		@include tablet-accordion-items();
+	}
+
+	@include media-breakpoint-up(lg) {
+		@include desktop-accordion-items();
+	}
+}
+
+@mixin font-menu-nav-items() {
+	@include mobile-menu-nav-items();
+
+	@include media-breakpoint-up(md) {
+		@include tablet-menu-nav-items();
+	}
+
+	@include media-breakpoint-up(lg) {
+		@include desktop-menu-nav-items();
+	}
+}
+
+@mixin font-secondary-menu-items() {
+	@include mobile-secondary-menu-items();
+
+	@include media-breakpoint-up(md) {
+		@include tablet-secondary-menu-items();
+	}
+
+	@include media-breakpoint-up(lg) {
+		@include desktop-secondary-menu-items();
+	}
+}
+
+@mixin h2-special() {
+	@include h2-special-mobile();
+
+	@include media-breakpoint-up(lg) {
+		@include h2-special-desktop();
+	}
+}

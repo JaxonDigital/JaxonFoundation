@@ -1,7 +1,15 @@
-﻿@* @model PageViewModel<BasePage>
+﻿@model PageViewModel<BasePage>
 @using System.Threading
 @using JaxonFoundation.Logic.ViewModels
 @using JaxonFoundation.Logic.Models.Pages.Base
+
+@{
+    Model.CanonicalUrl = "Something";
+    if (true == true)
+    {
+        Console.WriteLine("Hit It");
+    }
+}
 
 <!DOCTYPE html>
 <html lang="@Model.LanguageCode" style="background:white">
@@ -10,6 +18,24 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=yes" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    @(await Component.InvokeAsync<MetaDataComponent>(Model))
-    @Html.RequiredClientResources("Header")
- *@
+
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+                        w[l] = w[l] || []; w[l].push({
+                            'gtm.start':
+                                new Date().getTime(), event: 'gtm.js'
+                        }); var f = d.getElementsByTagName(s)[0],
+                            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                                'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+                    })(window, document, 'script', 'dataLayer', 'NOT-SCRIPT');</script>
+    <!-- End Google Tag Manager -->
+</head>
+
+<!body>
+
+<main id="main">
+        @RenderBody()
+</main>
+</!body>
+</html>
