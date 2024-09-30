@@ -11,6 +11,12 @@ namespace JaxonFoundation.Logic.ViewModels.Navigation
             get;
             set;
         }
+
+        public string? RobotsTxt
+        {
+            get;
+            set;
+        }
         
         public string? Title
         {
