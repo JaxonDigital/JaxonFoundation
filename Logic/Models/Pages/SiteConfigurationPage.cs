@@ -1,0 +1,58 @@
+﻿using EPiServer.Web;
+using Geta.Optimizely.ContentTypeIcons.Attributes;
+using Geta.Optimizely.ContentTypeIcons;
+using JaxonFoundation.Logic.Constants;
+using JaxonFoundation.Logic.Interfaces.Descriptors;
+using System.ComponentModel.DataAnnotations;
+using JaxonFoundation.Infrastructure;
+using JaxonFoundation.Logic.Validators.DataAnnotations;
+using JaxonFoundation.Logic.Navigation.Models;
+
+namespace JaxonFoundation.Logic.Models.Pages
+{
+    [ContentType(DisplayName = "Site Configuration", GUID = "805D077A-B1FD-4BE3-8DC4-930B7FAC41BD",
+		Description = "Site Configurations and Settings such Google Script, Robots.txt, Headers, and Footers",
+		GroupName = PageGroups.UtilityPages)]
+    [AvailableContentTypes(Availability.None, IncludeOn = new[] { typeof(HomePage) })]
+    [ContentTypeIcon(FontAwesome5Solid.Cogs)]
+	[AllowedInstances(1, Scope = AllowedInstancesAttribute.InstanceScope.SameParentOrDescendant)]
+
+	public class SiteConfigurationPage : PageData, ISiteConfigurationPageIcon , IAllPropertiesView
+    {
+		public override void SetDefaultValues(EPiServer.DataAbstraction.ContentType contentType)
+		{
+			base.SetDefaultValues(contentType);
+			this.VisibleInMenu = false;
+        }
+
+        [CultureSpecific]
+		[UIHint(UIHint.Textarea)]
+		[Display(Name = "Google Analytics Identifier", Description = "Unique Id for GA Scripts", GroupName = "Site Settings", Order = 100)]
+		public virtual string? GoogleAnanlyticsId { get; set; }
+
+		#region Robots.txt
+		[UIHint(UIHint.Textarea)]
+		[Display(Name = "Robots.txt", Description = "Define the robots txt rules for the page", GroupName ="Site Settings", Order = 200)]
+		public virtual string? RobotsTxt { get; set; }
+        #endregion
+
+        [UIHint(UIHint.Textarea)]
+        [Display(Name = "CSS Body Class", Description = "Used for targeting site specific CSS rules", GroupName = "Site Settings", Order = 100)]
+        public virtual string? CssBodyClass { get; set; }
+
+        #region Navigation
+        [CultureSpecific]
+        [Display(
+           Name = "Header",
+           Description = "The header and main navigation for all pages under this home page.",
+           GroupName = PageTabs.Navigation,
+           Order = 100)]
+        [AllowedTypes(typeof(HeaderBlock))]
+        [MaxItemCount(1)]
+        public virtual ContentArea? Header
+        {
+            get; set;
+        }
+        #endregion
+    }
+}

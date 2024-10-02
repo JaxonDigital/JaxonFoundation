@@ -11,14 +11,14 @@ namespace JaxonFoundation.Infrastructure
             var contentLoader = ServiceLocator.Current.GetInstance<IContentLoader>();
             PageData currentPage = contentLoader.Get<PageData>(contentLink);
             PageData? siteSettingsPage = GetSiteSettingsPage(currentPage);
-            string? analyticsId = (siteSettingsPage as SiteSettingsPage)?.GoogleAnanlyticsId;
+            string? analyticsId = (siteSettingsPage as SiteConfigurationPage)?.GoogleAnanlyticsId;
             return analyticsId;
         }
 
         public static PageData? GetSiteSettingsPage(PageData currentPage)
         {
             var contentLoader = ServiceLocator.Current.GetInstance<IContentLoader>();
-            if (currentPage is SiteSettingsPage)
+            if (currentPage is SiteConfigurationPage)
             {
                 return currentPage;
             }

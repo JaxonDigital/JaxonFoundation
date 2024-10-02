@@ -12,7 +12,7 @@ using Cache = System.Runtime.Caching.MemoryCache;
 namespace JaxonFoundation.Logic.InitializationModules
 {
     [InitializableModule]
-    public class SiteSettingsPageInitialization : IInitializableModule
+    public class SiteConfigurationPageInitialization : IInitializableModule
     {
         private IContentEvents? _contentEvents;
         private  IContentRepository? _contentRepository;
@@ -35,7 +35,7 @@ namespace JaxonFoundation.Logic.InitializationModules
 
         private void OnPublishedContent(object sender, ContentEventArgs e)
         {
-            if (e.Content is SiteSettingsPage siteSettingsPage)
+            if (e.Content is SiteConfigurationPage siteSettingsPage)
             {
                 if (_isModifyingContent)
                 {
@@ -45,7 +45,7 @@ namespace JaxonFoundation.Logic.InitializationModules
                 {
                     // Set the flag to true to indicate we are now modifying content
                     _isModifyingContent = true;
-                    var editablePage = siteSettingsPage.CreateWritableClone() as SiteSettingsPage;
+                    var editablePage = siteSettingsPage.CreateWritableClone() as SiteConfigurationPage;
 
                     string GoogleCacheKey = editablePage.Name + "GoogleId";
 
