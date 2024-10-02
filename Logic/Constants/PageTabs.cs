@@ -10,7 +10,7 @@ namespace JaxonFoundation.Logic.Constants
         [RequiredAccess(AccessLevel.Edit)]
         public const string PageContent = "Page Content";
 
-        [Display(Order = 100)]
+        [Display(Order = 10)]
         [RequiredAccess(AccessLevel.Edit)]
         public const string Navigation = "Navigation";
 
