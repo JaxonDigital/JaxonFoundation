@@ -28,7 +28,7 @@ namespace JaxonFoundation.Logic.Controllers.Pages
             var viewModel = _mapper.Map<HomePage, HomePageViewModel>(currentPage);
             var contentRepository = ServiceLocator.Current.GetInstance<IContentRepository>();
             var children = contentRepository.GetChildren<PageData>(currentPage.ContentLink);
-            var siteSettingsPage = children.OfType<SiteConfigurationPage>().FirstOrDefault();
+            var siteConfigurationPage = children.OfType<SiteConfigurationPage>().FirstOrDefault();
             string RobotsCacheKey = "SiteSettingsRobots";
             var robots = _cache.Get(RobotsCacheKey);
             string GoogleCacheKey = "SiteSettingsGoogleId";
@@ -39,8 +39,12 @@ namespace JaxonFoundation.Logic.Controllers.Pages
             }
             else 
             {
-                viewModel.RobotsTxt = siteSettingsPage?.RobotsTxt;
-                _cache.Add(RobotsCacheKey, siteSettingsPage?.RobotsTxt, DateTimeOffset.Now.AddDays(365));
+                viewModel.RobotsTxt = siteConfigurationPage?.RobotsTxt;
+                if (viewModel.RobotsTxt == null)
+                {
+                    viewModel.RobotsTxt = string.Empty;
+                }
+                _cache.Add(RobotsCacheKey, viewModel.RobotsTxt, DateTimeOffset.Now.AddDays(365));
             }
             if (googleId != null) 
             {
@@ -48,8 +52,12 @@ namespace JaxonFoundation.Logic.Controllers.Pages
             }
             else
             {
-                viewModel.GoogleAnanlyticsId = siteSettingsPage?.GoogleAnanlyticsId;
-                _cache.Add(GoogleCacheKey, siteSettingsPage?.GoogleAnanlyticsId, DateTimeOffset.Now.AddDays(365));
+                viewModel.GoogleAnanlyticsId = siteConfigurationPage?.GoogleAnanlyticsId;
+                if (viewModel.GoogleAnanlyticsId == null)
+                {
+                    viewModel.GoogleAnanlyticsId = string.Empty;
+                }
+                _cache.Add(GoogleCacheKey, viewModel.GoogleAnanlyticsId, DateTimeOffset.Now.AddDays(365));
             }
             return View(viewModel);
         }

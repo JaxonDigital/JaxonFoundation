@@ -10,8 +10,8 @@ using JaxonFoundation.Logic.Navigation.Models;
 
 namespace JaxonFoundation.Logic.Models.Pages
 {
-    [ContentType(DisplayName = "SiteSettings", GUID = "805D077A-B1FD-4BE3-8DC4-930B7FAC41BD",
-		Description = "Global Site Settings such Google Script and Robots.txt",
+    [ContentType(DisplayName = "Site Configuration", GUID = "805D077A-B1FD-4BE3-8DC4-930B7FAC41BD",
+		Description = "Site Configurations and Settings such Google Script, Robots.txt, Headers, and Footers",
 		GroupName = PageGroups.UtilityPages)]
     [AvailableContentTypes(Availability.None, IncludeOn = new[] { typeof(HomePage) })]
     [ContentTypeIcon(FontAwesome5Solid.Cogs)]
@@ -53,5 +53,6 @@ namespace JaxonFoundation.Logic.Models.Pages
         {
             get; set;
         }
+        #endregion
     }
 }
