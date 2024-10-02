@@ -1,6 +1,6 @@
 ﻿namespace JaxonFoundation.Logic.Interfaces.Descriptors
 {
-    public interface ISiteSettingsPageIcon
+    public interface ISiteConfigurationPageIcon
     {
     }
 }

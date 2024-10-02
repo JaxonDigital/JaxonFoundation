@@ -4,7 +4,7 @@ using JaxonFoundation.Logic.Models.Blocks;
 using JaxonFoundation.Logic.Models.Media;
 using System.ComponentModel.DataAnnotations;
 
-namespace Oxy.Com.Logic.Navigation.Models
+namespace JaxonFoundation.Logic.Navigation.Models
 {
 	[ContentType(
 		DisplayName = "Header",

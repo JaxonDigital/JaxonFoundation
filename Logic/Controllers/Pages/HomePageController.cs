@@ -28,7 +28,7 @@ namespace JaxonFoundation.Logic.Controllers.Pages
             var viewModel = _mapper.Map<HomePage, HomePageViewModel>(currentPage);
             var contentRepository = ServiceLocator.Current.GetInstance<IContentRepository>();
             var children = contentRepository.GetChildren<PageData>(currentPage.ContentLink);
-            var siteSettingsPage = children.OfType<SiteSettingsPage>().FirstOrDefault();
+            var siteSettingsPage = children.OfType<SiteConfigurationPage>().FirstOrDefault();
             string RobotsCacheKey = "SiteSettingsRobots";
             var robots = _cache.Get(RobotsCacheKey);
             string GoogleCacheKey = "SiteSettingsGoogleId";

@@ -32,7 +32,7 @@ namespace JaxonFoundation.Logic.Controllers
         public ActionResult Public()
         {
             string settingsPageRobots = String.Empty;
-            var settingsPage = _contentLoader.GetDescendents(ContentReference.StartPage).ToList().Select(contentRef => _contentLoader.Get<IContent>(contentRef)).OfType<SiteSettingsPage>().FirstOrDefault();
+            var settingsPage = _contentLoader.GetDescendents(ContentReference.StartPage).ToList().Select(contentRef => _contentLoader.Get<IContent>(contentRef)).OfType<SiteConfigurationPage>().FirstOrDefault();
 
             settingsPageRobots = settingsPage.RobotsTxt;
 
