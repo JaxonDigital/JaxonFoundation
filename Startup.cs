@@ -8,6 +8,7 @@ using Geta.Optimizely.ContentTypeIcons.Infrastructure.Initialization;
 using EPiServer.Framework.Web.Resources;
 using EPiServer.Web;
 using Oxy.Com.Logic.Mapping;
+using Geta.Optimizely.Sitemaps;
 
 namespace JaxonFoundation
 {
@@ -60,6 +61,13 @@ namespace JaxonFoundation
                .AddCmsCoreWeb()
                .AddAdminUserRegistration()
                .AddEmbeddedLocalization<Startup>();
+
+            services.AddSitemaps(x =>
+            {
+                x.EnableLanguageDropDownInAdmin = false;
+                x.EnableRealtimeCaching = false;
+                x.EnableRealtimeSitemap = true;
+            });
 
 
             services.AddControllersWithViews().AddNewtonsoftJson();
