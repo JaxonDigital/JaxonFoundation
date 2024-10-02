@@ -1,4 +1,6 @@
 ﻿using EPiServer.Web;
+using Geta.Optimizely.ContentTypeIcons.Attributes;
+using Geta.Optimizely.ContentTypeIcons;
 using JaxonFoundation.Logic.Constants;
 using JaxonFoundation.Logic.Models.Blocks;
 using JaxonFoundation.Logic.Models.Media;
@@ -11,7 +13,8 @@ namespace JaxonFoundation.Logic.Navigation.Models
 		GUID = "0ED073B3-ABAE-420B-909D-3760AFD7542C",
 		Description = "Header and navigation for the web site",
 		GroupName = BlockGroups.NavigationBlocks)]
-	public class HeaderBlock : StandardBlockBase
+    [ContentTypeIcon(FontAwesome5Solid.PollH)]
+    public class HeaderBlock : StandardBlockBase
 	{
 		
 		[CultureSpecific]

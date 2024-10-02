@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations;
 using JaxonFoundation.Infrastructure;
 using JaxonFoundation.Logic.Validators.DataAnnotations;
 using JaxonFoundation.Logic.Navigation.Models;
+using JaxonFoundation.Logic.Models.Media;
 
 namespace JaxonFoundation.Logic.Models.Pages
 {
@@ -37,8 +38,28 @@ namespace JaxonFoundation.Logic.Models.Pages
         #endregion
 
         [UIHint(UIHint.Textarea)]
-        [Display(Name = "CSS Body Class", Description = "Used for targeting site specific CSS rules", GroupName = "Site Settings", Order = 100)]
+        [Display(Name = "CSS Body Class", Description = "Used for targeting site specific CSS rules", GroupName = "Site Settings", Order = 300)]
         public virtual string? CssBodyClass { get; set; }
+
+
+        [CultureSpecific]
+        [Display(
+         Name = "Favicon",
+         Description = "32 x 32",
+         GroupName = "Site Settings",
+         Order = 400)]
+        [UIHint(UIHint.Image)]
+        [AllowedTypes(typeof(ImageFile))]
+        public virtual ContentReference Favicon { get; set; }
+        [CultureSpecific]
+        [Display(
+            Name = "Apple Touch Icon",
+            Description = "180x180",
+            GroupName = "Site Settings",
+            Order = 500)]
+        [UIHint(UIHint.Image)]
+        [AllowedTypes(typeof(ImageFile))]
+        public virtual ContentReference AppleTouch { get; set; }
 
         #region Navigation
         [CultureSpecific]
