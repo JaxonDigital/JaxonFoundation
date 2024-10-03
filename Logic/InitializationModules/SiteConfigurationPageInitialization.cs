@@ -1,13 +1,12 @@
-﻿using EPiServer;
-using EPiServer.Core.Internal;
-using EPiServer.DataAccess;
+﻿using EPiServer.DataAccess;
 using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
 using EPiServer.Security;
 using EPiServer.ServiceLocation;
 using JaxonFoundation.Logic.Models.Pages;
-using System.Configuration;
 using Cache = System.Runtime.Caching.MemoryCache;
+using JaxonFoundation.Logic.Constants;
+using JaxonFoundation.Infrastructure;
 
 namespace JaxonFoundation.Logic.InitializationModules
 {
@@ -35,7 +34,7 @@ namespace JaxonFoundation.Logic.InitializationModules
 
         private void OnPublishedContent(object sender, ContentEventArgs e)
         {
-            if (e.Content is SiteConfigurationPage siteSettingsPage)
+            if (e.Content is SiteConfigurationPage siteConfigurationPage)
             {
                 if (_isModifyingContent)
                 {
@@ -45,34 +44,20 @@ namespace JaxonFoundation.Logic.InitializationModules
                 {
                     // Set the flag to true to indicate we are now modifying content
                     _isModifyingContent = true;
-                    var editablePage = siteSettingsPage.CreateWritableClone() as SiteConfigurationPage;
+                    var editablePage = siteConfigurationPage.CreateWritableClone() as SiteConfigurationPage;
 
-                    string GoogleCacheKey = editablePage.Name + "GoogleId";
+                    string CacheKey = editablePage.WorkPageID + DefaultContent.Cache.Configuration;
 
-                    if (editablePage != null & _cache.Contains(GoogleCacheKey) && _cache.Get(GoogleCacheKey) != null)
+                    if (_cache.Contains(CacheKey))
                     {
-                        _cache.Remove(GoogleCacheKey);
-                        _cache.Add(GoogleCacheKey, editablePage.GoogleAnanlyticsId, DateTimeOffset.Now.AddDays(365));
-                    }
-                    else if (!_cache.Contains(GoogleCacheKey) && editablePage != null)
-                    {
-                        _cache.Add(GoogleCacheKey, editablePage.GoogleAnanlyticsId, DateTimeOffset.Now.AddDays(365));
+                        _cache.Remove(CacheKey);
                     }
 
-                    string RobotsCacheKey = editablePage.Name + "Robots";
-                    if (editablePage != null & _cache.Contains(RobotsCacheKey) && _cache.Get(RobotsCacheKey) != null)
-                    {
-                        _cache.Remove(RobotsCacheKey);
-                        _cache.Add(RobotsCacheKey, editablePage.RobotsTxt, DateTimeOffset.Now.AddDays(365));
-
-                    }
-                    else if (!_cache.Contains(RobotsCacheKey) && editablePage != null)
-                    {
-                        _cache.Add(RobotsCacheKey, editablePage.RobotsTxt, DateTimeOffset.Now.AddDays(365));
-                    }
                     editablePage.VisibleInMenu = false;
                     _contentRepository.Save(editablePage, SaveAction.Save | SaveAction.Publish | SaveAction.SkipValidation | SaveAction.ForceCurrentVersion,
                             AccessLevel.NoAccess);
+
+                    SiteConfiguration.GetSiteConfiguration(editablePage.ContentLink);
                 }
                 finally
                 {

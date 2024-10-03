@@ -20,10 +20,10 @@ namespace JaxonFoundation.Logic.Models.Pages
 
 	public class SiteConfigurationPage : PageData, ISiteConfigurationPageIcon , IAllPropertiesView
     {
-		public override void SetDefaultValues(EPiServer.DataAbstraction.ContentType contentType)
-		{
-			base.SetDefaultValues(contentType);
-			this.VisibleInMenu = false;
+        public override void SetDefaultValues(EPiServer.DataAbstraction.ContentType contentType)
+        {
+            base.SetDefaultValues(contentType);
+            this.VisibleInMenu = false;
         }
 
         [CultureSpecific]

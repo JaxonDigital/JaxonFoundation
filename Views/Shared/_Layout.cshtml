@@ -2,9 +2,12 @@
 @using System.Threading
 @using JaxonFoundation.Logic.ViewModels
 @using JaxonFoundation.Logic.Models.Pages.Base
+@using JaxonFoundation.Logic.Models.Pages
+@using JaxonFoundation.Infrastructure
 
 @{
-    Model.CanonicalUrl = "Something";
+    SiteConfigurationPage? configuration = SiteConfiguration.GetSiteConfiguration(Model.ContentLink);
+
     if (true == true)
     {
         Console.WriteLine("Hit It");
