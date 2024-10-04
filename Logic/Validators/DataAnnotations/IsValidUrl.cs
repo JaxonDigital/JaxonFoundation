@@ -7,7 +7,7 @@ namespace JaxonFoundation.Logic.Validators.DataAnnotations
     /// </summary>
     public class IsValidUrl : ValidationAttribute
     {
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
             if (value != null && !string.IsNullOrWhiteSpace(value.ToString()))
             {

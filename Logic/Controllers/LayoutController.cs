@@ -25,10 +25,14 @@ namespace JaxonFoundation.Logic.Navigation.Controllers
 		{
 			var viewModel = new PageViewModel<BasePage>(currentPage);
 
-			var host = new Uri(Request.Path.Value);
-			var leftPartURL = host.GetLeftPart(System.UriPartial.Authority);
+            Uri? host = null;
+            if (!string.IsNullOrEmpty(Request.Path.Value))
+            {
+                host = new Uri(Request.Path.Value);
+            }
+            var leftPartURL = host?.GetLeftPart(System.UriPartial.Authority);
 			viewModel.SiteUrl = leftPartURL;
-			viewModel.CanonicalUrl = host.ToString();
+			viewModel.CanonicalUrl = host?.ToString();
 
 			if (viewModel.OpenGraphImage != null)
 			{

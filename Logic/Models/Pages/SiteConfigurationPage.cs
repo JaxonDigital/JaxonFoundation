@@ -49,7 +49,7 @@ namespace JaxonFoundation.Logic.Models.Pages
          Order = 400)]
         [UIHint(UIHint.Image)]
         [AllowedTypes(typeof(ImageFile))]
-        public virtual ContentReference Favicon { get; set; }
+        public virtual ContentReference? Favicon { get; set; }
         [CultureSpecific]
         [Display(
             Name = "Apple Touch Icon",
@@ -58,7 +58,7 @@ namespace JaxonFoundation.Logic.Models.Pages
             Order = 500)]
         [UIHint(UIHint.Image)]
         [AllowedTypes(typeof(ImageFile))]
-        public virtual ContentReference AppleTouch { get; set; }
+        public virtual ContentReference? AppleTouch { get; set; }
 
         #region Navigation
         [CultureSpecific]

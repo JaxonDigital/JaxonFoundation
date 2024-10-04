@@ -29,7 +29,7 @@ namespace JaxonFoundation.Logic.Validators.DataAnnotations
             }
             else
             {
-                IEnumerable<object> list = value as IEnumerable<object>;
+                IEnumerable<object>? list = value as IEnumerable<object>;
 
                 if (list == null)
                 {
@@ -40,7 +40,7 @@ namespace JaxonFoundation.Logic.Validators.DataAnnotations
             }
         }
 
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
             var result = base.IsValid(value, validationContext);
 

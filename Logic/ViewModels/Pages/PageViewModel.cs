@@ -50,67 +50,67 @@ namespace JaxonFoundation.Logic.ViewModels.Pages
             LanguageCode = currentPage.Language.Name;
         }
 
-        public string Name { get; private set; }
+        public string? Name { get; private set; }
 
-        public string LanguageCode { get; private set; }
+        public string? LanguageCode { get; private set; }
 
-        public ContentArea Hero { get; private set; }
+        public ContentArea? Hero { get; private set; }
 
-        public ContentArea MainContent { get; private set; }
+        public ContentArea? MainContent { get; private set; }
 
-        public bool HasHero { get; private set; }
+        public bool? HasHero { get; private set; }
 
-        public bool HasMainContent { get; private set; }
+        public bool? HasMainContent { get; private set; }
 
-        public string PageTitle
+        public string? PageTitle
         {
             get;
             set;
         }
 
-        public string SiteUrl
+        public string? SiteUrl
         {
             get;
             set;
         }
 
-        public string CanonicalUrl
+        public string? CanonicalUrl
         {
             get;
             set;
         }
 
-        public string MetaDescription
+        public string? MetaDescription
         {
             get;
             set;
         }
 
-        public ImageFile ListableImage
+        public ImageFile? ListableImage
         {
             get;
             set;
         }
 
-        public string OpenGraphTitle
+        public string? OpenGraphTitle
         {
             get;
             set;
         }
 
-        public string OpenGraphDescription
+        public string? OpenGraphDescription
         {
             get;
             set;
         }
 
-        public string OpenGraphType
+        public string? OpenGraphType
         {
             get;
             set;
         }
 
-        public ImageFile OpenGraphImage
+        public ImageFile? OpenGraphImage
         {
             get;
             set;
@@ -118,35 +118,35 @@ namespace JaxonFoundation.Logic.ViewModels.Pages
 
         public bool HasOpenGraphImage => OpenGraphImage != null;
 
-        public string OpenGraphImageAltText => HasOpenGraphImage ? OpenGraphImage.Description : string.Empty;
+        public string? OpenGraphImageAltText => HasOpenGraphImage ? OpenGraphImage?.Description : string.Empty;
 
-        public string OpenGraphImageUrl
+        public string? OpenGraphImageUrl
         {
             get;
             set;
         }
 
-        public string TwitterCardTitle
+        public string? TwitterCardTitle
         {
             get;
             set;
         }
 
-        public string TwitterCardDescription
+        public string? TwitterCardDescription
         {
             get;
             set;
         }
 
-        public virtual string TwitterCardType => HasTwitterCardImage ? "summary_large_image" : "summary";
+        public virtual string? TwitterCardType => HasTwitterCardImage ? "summary_large_image" : "summary";
 
-        public ImageFile TwitterCardImage
+        public ImageFile? TwitterCardImage
         {
             get;
             set;
         }
 
-        public string TwitterCardImageUrl
+        public string? TwitterCardImageUrl
         {
             get;
             set;
@@ -154,32 +154,32 @@ namespace JaxonFoundation.Logic.ViewModels.Pages
 
         public bool HasTwitterCardImage => TwitterCardImage != null;
 
-        public string TwitterCardImageAltText => HasTwitterCardImage ? TwitterCardImage.Description : string.Empty;
+        public string? TwitterCardImageAltText => HasTwitterCardImage ? TwitterCardImage?.Description : string.Empty;
 
-        public string EmailShareSubject
+        public string? EmailShareSubject
         {
             get;
             set;
         }
 
-        public string EmailShareBody
+        public string? EmailShareBody
         {
             get;
             set;
         }
 
-        public string MetaTags
+        public string? MetaTags
         {
             get;
             set;
         }
-        public string CssBodyClass
+        public string? CssBodyClass
         {
             get;
             set;
         }
 
-        public ContentReference ContentLink
+        public ContentReference? ContentLink
         {
             get;
             set;

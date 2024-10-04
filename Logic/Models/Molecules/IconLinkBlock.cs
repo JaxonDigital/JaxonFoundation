@@ -9,10 +9,10 @@ namespace JaxonFoundation.Logic.Models.Molecules
 	{
 		[CultureSpecific]
 		[Display(Name = "Icon Label", Description = "Displays icon for the appropriate social channel based on the label", GroupName = "Block Content", Order = 5)]
-		public virtual string IconLabel { get; set; }
+		public virtual string? IconLabel { get; set; }
 
 		//Since the footer links doesn't need the text, this has been hidden.
 		[ScaffoldColumn(false)]
-		public override string Text { get => base.Text; set => base.Text = value; }
+		public override string? Text { get => base.Text; set => base.Text = value; }
 	}
 }

@@ -6,7 +6,11 @@
 @using JaxonFoundation.Infrastructure
 
 @{
-    SiteConfigurationPage? configuration = SiteConfiguration.GetSiteConfiguration(Model.ContentLink);
+    SiteConfigurationPage? configuration = new SiteConfigurationPage();
+    if (Model.ContentLink != null)
+    {
+        configuration = SiteConfiguration.GetSiteConfiguration(Model.ContentLink);
+    }
     string? analyticsId = configuration?.GoogleAnanlyticsId;
 }
 

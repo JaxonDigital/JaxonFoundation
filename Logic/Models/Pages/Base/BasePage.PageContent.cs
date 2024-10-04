@@ -9,12 +9,12 @@ namespace JaxonFoundation.Logic.Models.Pages.Base
 		[CultureSpecific]
 		[Display(Name = "Hero", Description = "", GroupName = PageTabs.PageContent, Order = 10)]
 		[AllowedTypes(new[] { typeof(IHeroBlock) })]
-		public virtual ContentArea Hero { get; set; }
+		public virtual ContentArea? Hero { get; set; }
 
 		[CultureSpecific]
 		[Display(Name = "Main Content", Description = "", GroupName = PageTabs.PageContent, Order = 20)]
         
-        public virtual ContentArea MainContent { get; set; }
+        public virtual ContentArea? MainContent { get; set; }
 
 		[Ignore]
 		public bool HasHero => Hero != null && !Hero.IsEmpty;

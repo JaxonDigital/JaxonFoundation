@@ -22,7 +22,7 @@ namespace JaxonFoundation.Logic.Validators.DataAnnotations
         {
         }
 
-        protected override ValidationResult IsValid(object? value, ValidationContext validationContext)
+        protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
             // Empty value is okay.
             if (value == null)
@@ -35,9 +35,9 @@ namespace JaxonFoundation.Logic.Validators.DataAnnotations
             if (file != null)
             {
                 // Check if the given file has one of the allowed file types/extensions.
-                if (!_allowedFileTypes.Contains(file.FileType.ToUpper()))
+                if (!_allowedFileTypes.Contains(file?.FileType?.ToUpper()))
                 {
-                    return new ValidationResult($"The file uploaded to \"{validationContext.DisplayName}\" is not one of the allowed file types (has {file.FileType}). It must be of one of the following types: {string.Join(", ", _allowedFileTypes)}.");
+                    return new ValidationResult($"The file uploaded to \"{validationContext.DisplayName}\" is not one of the allowed file types (has {file?.FileType}). It must be of one of the following types: {string.Join(", ", _allowedFileTypes)}.");
                 }
             }
             else

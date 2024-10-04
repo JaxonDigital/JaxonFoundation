@@ -5,6 +5,8 @@ using JaxonFoundation.Logic.Constants;
 using JaxonFoundation.Logic.Models.Blocks;
 using JaxonFoundation.Logic.Models.Media;
 using System.ComponentModel.DataAnnotations;
+using JaxonFoundation.Models.Molecules;
+using JaxonFoundation.Logic.Models.Molecules;
 
 namespace JaxonFoundation.Logic.Models.Navigation
 {
@@ -24,7 +26,7 @@ namespace JaxonFoundation.Logic.Models.Navigation
             Order = 10)]
         [UIHint(UIHint.Image)]
         [AllowedTypes(typeof(ImageFile))]
-        public virtual ContentReference Logo { get; set; }
+        public virtual ContentReference? Logo { get; set; }
 
         [CultureSpecific]
         [Display(
@@ -32,22 +34,22 @@ namespace JaxonFoundation.Logic.Models.Navigation
             Description = "Legal copyright text",
             GroupName = "Block Content",
             Order = 15)]
-        public virtual string Copyright
+        public virtual string? Copyright
         {
             get; set;
         }
 
-        //[CultureSpecific]
-        //[Display(
-        //    Name = "Links",
-        //    Description = "Collection of legal links",
-        //    GroupName = BlockTabs.BlockContent,
-        //    Order = 20)]
-        //[AllowedTypes(new[] { typeof(LinkBlock) }, restrictedTypes: new[] { typeof(IconLinkBlock) })]
-        //public virtual ContentArea Links
-        //{
-        //    get; set;
-        //}
+        [CultureSpecific]
+        [Display(
+            Name = "Links",
+            Description = "Collection of legal links",
+            GroupName = "Block Content",
+            Order = 20)]
+        [AllowedTypes(new[] { typeof(LinkBlock) }, restrictedTypes: new[] { typeof(IconLinkBlock) })]
+        public virtual ContentArea? Links
+        {
+            get; set;
+        }
 
         [CultureSpecific]
         [Display(
@@ -55,22 +57,22 @@ namespace JaxonFoundation.Logic.Models.Navigation
             Description = "Social Links Headline",
             GroupName = "Block Content",
             Order = 30)]
-        public virtual string SocialLinksHeadline
+        public virtual string? SocialLinksHeadline
         {
             get; set;
         }
 
-        //[CultureSpecific]
-        //[Display(
-        //    Name = "Social Links",
-        //    Description = "Collection of Social Links",
-        //    GroupName = BlockTabs.BlockContent,
-        //    Order = 40)]
-        //[AllowedTypes(new[] { typeof(IconLinkBlock) })]
-        //public virtual ContentArea SocialLinks
-        //{
-        //    get; set;
-        //}
+        [CultureSpecific]
+        [Display(
+            Name = "Social Links",
+            Description = "Collection of Social Links",
+            GroupName = "Block Content",
+            Order = 40)]
+        [AllowedTypes(new[] { typeof(IconLinkBlock) })]
+        public virtual ContentArea? SocialLinks
+        {
+            get; set;
+        }
 
         [CultureSpecific]
         [Display(
@@ -78,7 +80,7 @@ namespace JaxonFoundation.Logic.Models.Navigation
             Description = "Back to top text",
             GroupName = "Block Content",
             Order = 50)]
-        public virtual string BackToTop
+        public virtual string? BackToTop
         {
             get; set;
         }
@@ -89,7 +91,7 @@ namespace JaxonFoundation.Logic.Models.Navigation
             Description = "",
             GroupName = "Block Content",
             Order = 60)]
-        public virtual string LogoLinkAriaLabel
+        public virtual string? LogoLinkAriaLabel
         {
             get; set;
         }

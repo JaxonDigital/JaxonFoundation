@@ -12,9 +12,6 @@ namespace JaxonFoundation.Logic.Controllers.Pages
 {
     public class HomePageController : PageController<HomePage>
     {
-     
-        private IContentRepository? _contentRepository;
-
         public ActionResult Index(HomePage currentPage)
         {
 

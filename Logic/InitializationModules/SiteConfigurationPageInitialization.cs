@@ -17,7 +17,6 @@ namespace JaxonFoundation.Logic.InitializationModules
         private  IContentRepository? _contentRepository;
         private static readonly Cache _cache = Cache.Default;
         private static bool _isModifyingContent = false; // Flag to prevent infinite loop
-        Injected<IContentTypeRepository> _contentTypeRepository;
         public void Initialize(InitializationEngine context)
 
         {
@@ -32,7 +31,7 @@ namespace JaxonFoundation.Logic.InitializationModules
         }
 
 
-        private void OnPublishedContent(object sender, ContentEventArgs e)
+        private void OnPublishedContent(object? sender, ContentEventArgs e)
         {
             if (e.Content is SiteConfigurationPage siteConfigurationPage)
             {
@@ -44,20 +43,23 @@ namespace JaxonFoundation.Logic.InitializationModules
                 {
                     // Set the flag to true to indicate we are now modifying content
                     _isModifyingContent = true;
-                    var editablePage = siteConfigurationPage.CreateWritableClone() as SiteConfigurationPage;
+                    SiteConfigurationPage? editablePage = new SiteConfigurationPage();
+                     editablePage = siteConfigurationPage?.CreateWritableClone() as SiteConfigurationPage;
 
-                    string CacheKey = editablePage.ContentLink.ID + DefaultContent.Cache.Configuration;
+                    string CacheKey = editablePage?.ContentLink.ID + DefaultContent.Cache.Configuration;
 
                     if (_cache.Contains(CacheKey))
                     {
                         _cache.Remove(CacheKey);
                     }
+                    if (editablePage != null)
+                    {
+                        editablePage.VisibleInMenu = false;
+                        _contentRepository?.Save(editablePage, SaveAction.Save | SaveAction.Publish | SaveAction.SkipValidation | SaveAction.ForceCurrentVersion,
+                                AccessLevel.NoAccess);
 
-                    editablePage.VisibleInMenu = false;
-                    _contentRepository.Save(editablePage, SaveAction.Save | SaveAction.Publish | SaveAction.SkipValidation | SaveAction.ForceCurrentVersion,
-                            AccessLevel.NoAccess);
-
-                    SiteConfiguration.GetSiteConfiguration(editablePage.ContentLink);
+                        SiteConfiguration.GetSiteConfiguration(editablePage.ContentLink);
+                    }
                 }
                 finally
                 {

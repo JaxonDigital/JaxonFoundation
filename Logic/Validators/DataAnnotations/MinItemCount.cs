@@ -30,7 +30,7 @@ namespace JaxonFoundation.Logic.Validators.DataAnnotations
             return contentArea.Count >= minItemCount;
         }
 
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
             var result = base.IsValid(value, validationContext);
 
