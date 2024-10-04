@@ -16,7 +16,7 @@ namespace JaxonFoundation.Logic.Validators.DataAnnotations
             this.maxItemCount = maxItemCount;
         }
 
-        public override bool IsValid(object value)
+        public override bool IsValid(object? value)
         {
             if (value is ContentArea contentArea)
             {

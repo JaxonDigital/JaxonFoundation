@@ -2,14 +2,20 @@
 @using EPiServer.Web.Mvc.Html
 @using JaxonFoundation.Logic.ViewModels
 @using JaxonFoundation.Logic.Models.Pages
-@using JaxonFoundation.Logic.ViewModels.Navigation
+@using JaxonFoundation.Logic.Models.Pages.Base
 
-@model HomePageViewModel
+@model JaxonFoundation.Logic.ViewModels.Pages.PageViewModel<BasePage>
 
-@{
-    Layout = "~/Views/Shared/_HomePageLayout.cshtml";
+@if (@Html.PropertyFor(m => m.Hero) != null)
+{
+    @Html.PropertyFor(m => m.Hero)
 }
 
+
+@if (@Html.PropertyFor(m => m.MainContent) != null)
+{
+    @Html.PropertyFor(m => m.MainContent)
+}
 
 @if (true == true)
 {

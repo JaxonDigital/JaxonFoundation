@@ -60,6 +60,7 @@ namespace JaxonFoundation
                .AddCms()
                .AddCmsCoreWeb()
                .AddAdminUserRegistration()
+               .AddFind()
                .AddEmbeddedLocalization<Startup>();
 
             services.AddSitemaps(x =>
