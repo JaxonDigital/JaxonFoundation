@@ -2,7 +2,7 @@
 using Geta.Optimizely.Sitemaps.Repositories;
 using Geta.Optimizely.Sitemaps.Entities;
 using System.Text;
-using JaxonFoundation.Logic.Models.Pages;
+using JaxonFoundation.Infrastructure;
 
 namespace JaxonFoundation.Logic.Controllers
 {
@@ -31,14 +31,14 @@ namespace JaxonFoundation.Logic.Controllers
 
         public ActionResult Public()
         {
-            string settingsPageRobots = String.Empty;
-            var settingsPage = _contentLoader.GetDescendents(ContentReference.StartPage).ToList().Select(contentRef => _contentLoader.Get<IContent>(contentRef)).OfType<SiteConfigurationPage>().FirstOrDefault();
+            string? configurationPageRobots = String.Empty;
+            var configurationPage = SiteConfiguration.GetSiteConfiguration(ContentReference.StartPage);
 
-            settingsPageRobots = settingsPage.RobotsTxt;
+            configurationPageRobots = configurationPage?.RobotsTxt;
 
             string fullOrigin = "https://" + this.HttpContext.Request.Host.Value.ToString() + "/";
             var stringBuilder = new StringBuilder();
-            stringBuilder.AppendLine(settingsPageRobots);
+            stringBuilder.AppendLine(configurationPageRobots);
             stringBuilder.AppendLine("");
             foreach (SitemapData sitemapData in this._sitemapRepository.GetAllSitemapData())
             {

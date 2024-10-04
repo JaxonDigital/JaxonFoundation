@@ -11,6 +11,7 @@ using JaxonFoundation.Logic.Models.Media;
 
 namespace JaxonFoundation.Logic.Models.Pages
 {
+    [Access(Roles = "CmsAdmins")]
     [ContentType(DisplayName = "Site Configuration", GUID = "805D077A-B1FD-4BE3-8DC4-930B7FAC41BD",
 		Description = "Site Configurations and Settings such Google Script, Robots.txt, Headers, and Footers",
 		GroupName = PageGroups.UtilityPages)]
@@ -27,7 +28,6 @@ namespace JaxonFoundation.Logic.Models.Pages
         }
 
         [CultureSpecific]
-		[UIHint(UIHint.Textarea)]
 		[Display(Name = "Google Analytics Identifier", Description = "Unique Id for GA Scripts", GroupName = "Site Settings", Order = 100)]
 		public virtual string? GoogleAnanlyticsId { get; set; }
 
@@ -37,7 +37,6 @@ namespace JaxonFoundation.Logic.Models.Pages
 		public virtual string? RobotsTxt { get; set; }
         #endregion
 
-        [UIHint(UIHint.Textarea)]
         [Display(Name = "CSS Body Class", Description = "Used for targeting site specific CSS rules", GroupName = "Site Settings", Order = 300)]
         public virtual string? CssBodyClass { get; set; }
 
