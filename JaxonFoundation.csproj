@@ -27,6 +27,7 @@
   </ItemGroup>
   
   <ItemGroup>
+    <Folder Include="Logic\ViewModels\Navigation\Pages\" />
     <Folder Include="Views\Pages\" />
   </ItemGroup>
 </Project>

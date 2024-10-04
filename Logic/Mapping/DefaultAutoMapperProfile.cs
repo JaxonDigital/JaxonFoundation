@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using JaxonFoundation.Logic.Models.Pages;
 using JaxonFoundation.Logic.Models.Pages.Base;
-using JaxonFoundation.Logic.ViewModels.Navigation;
 
 
 namespace Oxy.Com.Logic.Mapping
@@ -11,7 +10,7 @@ namespace Oxy.Com.Logic.Mapping
 		public DefaultAutoMapperProfile()
 		{
             //// Pages
-            CreateMap<HomePage, HomePageViewModel>();
+            //CreateMap<HomePage, HomePageViewModel>();
            
         }
 	}

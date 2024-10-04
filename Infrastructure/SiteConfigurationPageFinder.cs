@@ -14,11 +14,23 @@ namespace JaxonFoundation.Infrastructure
             }
 
             ContentReference contentLink = currentPage.ContentLink;
-            var settingsPage = contentLoader.GetAncestors(contentLink)
+            PageData? configurationPage;
+            if (currentPage.PageTypeName == "HomePage")
+            {
+                configurationPage = contentLoader.GetChildren<PageData>(contentLink)
                 .OfType<PageData>()
                 .SkipWhile(x => x.ParentLink == null || !x.PageTypeName.EndsWith("ConfigurationPage"))
                 .FirstOrDefault();
-            return settingsPage;
+                return configurationPage;
+            }
+            else
+            {
+                configurationPage = contentLoader.GetAncestors(contentLink)
+                .OfType<PageData>()
+                .SkipWhile(x => x.ParentLink == null || !x.PageTypeName.EndsWith("ConfigurationPage"))
+                .FirstOrDefault();
+                return configurationPage;
+            }
         }
     }
 }
