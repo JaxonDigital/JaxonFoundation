@@ -2,7 +2,6 @@
 using Geta.Optimizely.Sitemaps.Repositories;
 using Geta.Optimizely.Sitemaps.Entities;
 using System.Text;
-using JaxonFoundation.Logic.Models.Pages;
 using JaxonFoundation.Infrastructure;
 
 namespace JaxonFoundation.Logic.Controllers

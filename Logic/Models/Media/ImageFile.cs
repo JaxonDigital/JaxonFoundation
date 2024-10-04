@@ -7,7 +7,7 @@ using JaxonFoundation.Logic.Constants;
 namespace JaxonFoundation.Logic.Models.Media
 {
     [ContentType(DisplayName = "Image", GUID = "0F7A16B8-EF7B-48A1-8D57-896F4A16EE5B")]
-    [MediaDescriptor(ExtensionString = "jpg,jpeg,jpe,ico,gif,bmp,png")]
+    [MediaDescriptor(ExtensionString = "jpg,jpeg,jpe,ico,gif,bmp,png,svg")]
     public class ImageFile : ImageData, MediaFile
     {
         #region Media Content

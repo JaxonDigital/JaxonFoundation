@@ -46,7 +46,7 @@ namespace JaxonFoundation.Logic.InitializationModules
                     _isModifyingContent = true;
                     var editablePage = siteConfigurationPage.CreateWritableClone() as SiteConfigurationPage;
 
-                    string CacheKey = editablePage.WorkPageID + DefaultContent.Cache.Configuration;
+                    string CacheKey = editablePage.ContentLink.ID + DefaultContent.Cache.Configuration;
 
                     if (_cache.Contains(CacheKey))
                     {
