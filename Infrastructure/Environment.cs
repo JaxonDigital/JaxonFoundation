@@ -1,6 +1,6 @@
 ﻿using EPiServer.ServiceLocation;
 
-public static class Environments
+public static class Environment
 {
     private static readonly IWebHostEnvironment _webHostingEnvironment = ServiceLocator.Current.GetInstance<IWebHostEnvironment>();
     public static bool IsProd()
