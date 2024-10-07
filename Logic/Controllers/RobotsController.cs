@@ -3,27 +3,23 @@ using Geta.Optimizely.Sitemaps.Repositories;
 using Geta.Optimizely.Sitemaps.Entities;
 using System.Text;
 using JaxonFoundation.Infrastructure;
+using JaxonFoundation.Logic.Models.Pages.Base;
 
 namespace JaxonFoundation.Logic.Controllers
 {
     public class RobotsController : Controller
     {
         private readonly ISitemapRepository _sitemapRepository;
-        private readonly IContentLoader _contentLoader;
-        private readonly IConfiguration _config;
 
         public RobotsController(ISitemapRepository sitemapRepository, IContentLoader contentLoader, IConfiguration configuration)
         {
             this._sitemapRepository = sitemapRepository;
-            _contentLoader = contentLoader;
-            _config = configuration;
         }
 
         [Route("robots.txt")]
         public ActionResult Index()
         {
-            var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-            if ("Production" == environment)
+            if (Environment.IsProd())
                 return Public();
             else
                 return Private();
