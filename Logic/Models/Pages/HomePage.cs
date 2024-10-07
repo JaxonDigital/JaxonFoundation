@@ -2,7 +2,6 @@
 using Geta.Optimizely.ContentTypeIcons;
 using JaxonFoundation.Logic.Interfaces.Descriptors;
 using JaxonFoundation.Logic.Models.Pages.Base;
-using System.ComponentModel.DataAnnotations;
 
 namespace JaxonFoundation.Logic.Models.Pages
 {
@@ -11,16 +10,5 @@ namespace JaxonFoundation.Logic.Models.Pages
     [ContentTypeIcon(FontAwesome5Solid.Home)]
 	public class HomePage : BasePage, IHomePageIcon
     {
-        [CultureSpecific]
-        [Display(
-      Name = "Title",
-      Description = "Title for the page",
-      GroupName = SystemTabNames.Content,
-      Order = 1)]
-        public virtual string? Title
-        {
-            get;
-            set;
-        }
     }
 }

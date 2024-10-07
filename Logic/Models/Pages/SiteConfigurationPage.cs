@@ -8,6 +8,7 @@ using JaxonFoundation.Infrastructure;
 using JaxonFoundation.Logic.Validators.DataAnnotations;
 using JaxonFoundation.Logic.Navigation.Models;
 using JaxonFoundation.Logic.Models.Media;
+using JaxonFoundation.Logic.Models.Navigation;
 
 namespace JaxonFoundation.Logic.Models.Pages
 {
@@ -70,6 +71,19 @@ namespace JaxonFoundation.Logic.Models.Pages
         [AllowedTypes(typeof(HeaderBlock))]
         [MaxItemCount(1)]
         public virtual ContentArea? Header
+        {
+            get; set;
+        }
+
+        [CultureSpecific]
+        [Display(
+          Name = "Footer",
+          Description = "The Footer including copyright, disclaimers, links, etc...",
+          GroupName = PageTabs.Navigation,
+          Order = 100)]
+        [AllowedTypes(typeof(FooterBlock))]
+        [MaxItemCount(1)]
+        public virtual ContentArea? Footer
         {
             get; set;
         }

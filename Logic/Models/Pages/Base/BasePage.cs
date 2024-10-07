@@ -111,7 +111,7 @@ namespace JaxonFoundation.Logic.Models.Pages.Base
 
         [UIHint("SeoSitemap")]
         [BackingType(typeof(PropertySEOSitemaps))]
-        [Display(Name = "SeoSitemap", Description = "Pages properties for sitemap", GroupName = PageTabs.Metadata, Order = 90)]
+        [Display(Name = "SeoSitemap", Description = "Pages properties for sitemap", GroupName = PageTabs.Configuration, Order = 10)]
         public virtual string? SEOSitemaps { get; set; }
 
         #endregion
