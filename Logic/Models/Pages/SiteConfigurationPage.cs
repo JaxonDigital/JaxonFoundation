@@ -9,6 +9,7 @@ using JaxonFoundation.Logic.Validators.DataAnnotations;
 using JaxonFoundation.Logic.Navigation.Models;
 using JaxonFoundation.Logic.Models.Media;
 using JaxonFoundation.Logic.Models.Navigation;
+using Geta.Optimizely.Sitemaps.Models;
 
 namespace JaxonFoundation.Logic.Models.Pages
 {
@@ -20,7 +21,7 @@ namespace JaxonFoundation.Logic.Models.Pages
     [ContentTypeIcon(FontAwesome5Solid.Cogs)]
 	[AllowedInstances(1, Scope = AllowedInstancesAttribute.InstanceScope.SameParentOrDescendant)]
 
-	public class SiteConfigurationPage : PageData, ISiteConfigurationPageIcon , IAllPropertiesView
+	public class SiteConfigurationPage : PageData, ISiteConfigurationPageIcon , IAllPropertiesView, IExcludeFromSitemap
     {
         public override void SetDefaultValues(EPiServer.DataAbstraction.ContentType contentType)
         {
