@@ -15,10 +15,12 @@ namespace JaxonFoundation
     public class Startup
     {
         private readonly IWebHostEnvironment _webHostingEnvironment;
+        private readonly IConfiguration _configuration;
 
-        public Startup(IWebHostEnvironment webHostingEnvironment)
+        public Startup(IWebHostEnvironment webHostingEnvironment, IConfiguration configuration)
         {
             _webHostingEnvironment = webHostingEnvironment;
+            _configuration = configuration;
         }
 
         public void ConfigureServices(IServiceCollection services)
@@ -33,7 +35,10 @@ namespace JaxonFoundation
                     uiOptions.Debug = true;
                 });
             }
-
+            else
+            {
+                services.AddCmsCloudPlatformSupport(_configuration);
+            }
 
 			// Geta Content Type Icons
 			services.AddContentTypeIcons(x =>
@@ -70,13 +75,11 @@ namespace JaxonFoundation
                 x.EnableRealtimeSitemap = true;
             });
 
-
             services.AddControllersWithViews().AddNewtonsoftJson();
             services.AddAutoMapper(cfg =>
             {
                 cfg.AddProfile<DefaultAutoMapperProfile>();
             });
-
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -85,7 +88,6 @@ namespace JaxonFoundation
             {
                 app.UseDeveloperExceptionPage();
             }
-
 
             app.UseStaticFiles();
             app.UseRouting();
