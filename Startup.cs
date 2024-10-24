@@ -39,6 +39,7 @@ namespace JaxonFoundation
             }
             else
             {
+                
                 // Bind AzureBlobProviderOptions to the settings in appsettings.json or appsettings.{env.EnvironmentName}.json
                 services.Configure<AzureBlobProviderOptions>(_configuration.GetSection("AzureBlobProvider"));
 
@@ -46,6 +47,7 @@ namespace JaxonFoundation
                 services.AddAzureBlobProvider(options =>
                 {
                     var azureBlobOptions = _configuration.GetSection("AzureBlobProvider").Get<AzureBlobProviderOptions>();
+                    Console.WriteLine("BlobSettings: ", azureBlobOptions);
                     options.ConnectionString = azureBlobOptions.ConnectionString;
                     options.ContainerName = azureBlobOptions.ContainerName;
                 });
