@@ -9,6 +9,8 @@ using EPiServer.Framework.Web.Resources;
 using EPiServer.Web;
 using Oxy.Com.Logic.Mapping;
 using Geta.Optimizely.Sitemaps;
+using EPiServer.Azure.Blobs;
+using EPiServer.Data;
 
 namespace JaxonFoundation
 {
@@ -37,7 +39,20 @@ namespace JaxonFoundation
             }
             else
             {
-                services.AddCmsCloudPlatformSupport(_configuration);
+                // Bind AzureBlobProviderOptions to the settings in appsettings.json or appsettings.{env.EnvironmentName}.json
+                services.Configure<AzureBlobProviderOptions>(_configuration.GetSection("AzureBlobProvider"));
+
+                // Register Azure Blob Provider with options from the configuration
+                services.AddAzureBlobProvider(options =>
+                {
+                    var azureBlobOptions = _configuration.GetSection("AzureBlobProvider").Get<AzureBlobProviderOptions>();
+                    options.ConnectionString = azureBlobOptions.ConnectionString;
+                    options.ContainerName = azureBlobOptions.ContainerName;
+                });
+                services.Configure((Action<DataAccessOptions>)(options => options.UpdateDatabaseSchema = true));
+                services.AddApplicationInsightsTelemetry();
+                services.AddServiceProfiler();
+                services.AddAzureEventProvider(options => options.TopicName = "mysiteevents");
             }
 
 			// Geta Content Type Icons
